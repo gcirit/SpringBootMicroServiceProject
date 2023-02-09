@@ -1,0 +1,10 @@
+com\gcirit\productservice\dto\ProductRequest$ProductRequestBuilder.class
+com\gcirit\productservice\controller\ProductController.class
+com\gcirit\productservice\service\ProductService.class
+com\gcirit\productservice\repository\ProductRepository.class
+com\gcirit\productservice\model\Product$ProductBuilder.class
+com\gcirit\productservice\dto\ProductRequest.class
+com\gcirit\productservice\dto\ProductResponse.class
+com\gcirit\productservice\dto\ProductResponse$ProductResponseBuilder.class
+com\gcirit\productservice\model\Product.class
+com\gcirit\productservice\ProductServiceApplication.class

@@ -1,0 +1,7 @@
+-------------------------------------------------------------------------------
+Test set: com.gcirit.productservice.ProductServiceApplicationTests
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.507 s <<< FAILURE! - in com.gcirit.productservice.ProductServiceApplicationTests
+com.gcirit.productservice.ProductServiceApplicationTests  Time elapsed: 0.506 s  <<< ERROR!
+java.lang.IllegalStateException: Could not find a valid Docker environment. Please see logs and check configuration
+
