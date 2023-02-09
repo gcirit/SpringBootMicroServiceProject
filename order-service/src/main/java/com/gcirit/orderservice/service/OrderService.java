@@ -7,6 +7,8 @@ import com.gcirit.orderservice.model.Order;
 import com.gcirit.orderservice.model.OrderLineItems;
 import com.gcirit.orderservice.repository.OrderRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.cloud.sleuth.Span;
+import org.springframework.cloud.sleuth.Tracer;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.reactive.function.client.WebClient;
@@ -22,6 +24,8 @@ public class OrderService {
 
     private final OrderRepository orderRepository;
     private final WebClient.Builder webClientBuilder;
+
+    private final Tracer tracer;
 
     public String placeOrder(OrderRequest orderRequest){
         Order order = new Order();
@@ -39,6 +43,13 @@ public class OrderService {
                 .map(OrderLineItems::getSkuCode)
                 .toList();
 
+        Span inventoryServiceLookup = tracer.nextSpan().name("InventoryServiceLookup");
+
+        try (Tracer.SpanInScope isLookup = tracer.withSpan(inventoryServiceLookup.start())) {
+
+            inventoryServiceLookup.tag("call", "inventory-service");
+            // Call Inventory Service, and place order if product is in
+            // stock
         InventoryResponse[] inventoryResponseArray = webClientBuilder.build().get()
                 .uri("http://inventory-service/api/inventory",
                         uriBuilder -> uriBuilder.queryParam("skuCode", skuCodes).build())
@@ -52,6 +63,9 @@ public class OrderService {
             return "Order Placed Successfully";
         }else {
             throw new IllegalArgumentException("Product not in stock, please try again");
+        }
+        } finally {
+            inventoryServiceLookup.end();
         }
 
     }

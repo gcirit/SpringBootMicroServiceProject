@@ -9,3 +9,7 @@ Service Discovery feature with Netflix Eureka integrated.
 API Gateway module with Spring Cloud Gateway integrated.
 
 Keycloak, autentication and OAuth2 service security features developed.
+
+CircuitBreaker feature with Resilience4j implemented.
+
+Added Distributed Tracing with Spring Cloud Sleuth Zipkin.
