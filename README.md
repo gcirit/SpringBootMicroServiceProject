@@ -1,4 +1,4 @@
-# SpringBootMicroServiceProject
+# SpringBoot MicroService Project
 
 ## Project Development
 
