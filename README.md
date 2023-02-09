@@ -13,3 +13,6 @@ Keycloak, autentication and OAuth2 service security features developed.
 CircuitBreaker feature with Resilience4j implemented.
 
 Added Distributed Tracing with Spring Cloud Sleuth Zipkin.
+
+Event Driven Architecture integrated with Apachi Kafka.
+
